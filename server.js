@@ -1,6 +1,6 @@
 import 'express-async-errors';
 import express from 'express'
-import { validateTest } from './middleware/validationMiddleware.js';
+
 
 //routers
 import jobRouter from './routers/jobRouter.js';
@@ -22,12 +22,7 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.post('/api/v1/test',validateTest,
-    (req, res) => {
-        const { name } = req.body;
-        res.json({ msg: `hello ${name}` });
-    }
-);
+
 
 app.use('*', (req, res) => {
     res.status(404).json({ msg: 'not found' });
