@@ -4,6 +4,7 @@ import express from 'express'
 
 //routers
 import jobRouter from './routers/jobRouter.js';
+import authRouter from './routers/authRouter.js';
 
 //middleware
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';;
@@ -16,6 +17,7 @@ app.use(express.json());
 
 
 app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/auth', authRouter);
 
 
 app.get('/', (req, res) => {
