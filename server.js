@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import express from 'express';
 //routers
 import jobRouter from './routers/jobRouter.js';
