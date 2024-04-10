@@ -1,6 +1,8 @@
 import express from 'express';
 //routers
 import jobRouter from './routers/jobRouter.js';
+import mongoose from 'mongoose';
+import 'dotenv/config'
 
 const app = express();
 app.use(express.json());
@@ -27,19 +29,20 @@ app.use((err, req, res, next) => {
     res.status(500).json({ msg: 'something went wrong' });
 });
 
-try {
-    const response = await fetch(
-        'https://www.course-api.com/react-useReducer-cart-project'
-    );
-    const cartData = await response.json();
-    console.log(cartData);
-} catch (error) {
-    console.log(error);
-}
 
 const port=process.env.PORT||5100
 
-app.listen(port, () => {
-    console.log(`server running ON port ${port}....`);
-});
+// app.listen(port, () => {
+//     console.log(`server running ON port ${port}....`);
+// });
+
+try {
+    await mongoose.connect(process.env.MONGO_URL);
+    app.listen(port, () => {
+        console.log(`server running on PORT ${port}....`);
+    });
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
 
