@@ -1,6 +1,6 @@
 import 'express-async-errors';
 import express from 'express'
-
+import cookieParser from 'cookie-parser';
 
 //routers
 import jobRouter from './routers/jobRouter.js';
@@ -14,6 +14,7 @@ import 'dotenv/config'
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 
 
