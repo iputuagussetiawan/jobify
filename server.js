@@ -73,6 +73,10 @@ app.post('/',(req,res)=>{
     res.json({ message: 'Data received', data: req.body });
 })
 
+app.use('*', (req, res) => {
+    res.status(404).json({ msg: 'not found' });
+});
+
 try {
     const response = await fetch(
         'https://www.course-api.com/react-useReducer-cart-project'
