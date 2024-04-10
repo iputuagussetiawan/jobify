@@ -2,6 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import User from '../models/UserModel.js';
 import { hashPassword, comparePassword } from '../utils/passwordUtils.js';
 import { UnauthenticatedError } from '../errors/customErrors.js';
+import { createJWT } from '../utils/tokenUtils.js';
 
 export const register = async (req, res) => {
     // a random value that is added to the password before hashing
@@ -26,5 +27,7 @@ export const login = async (req, res) => {
         user.password
     );
     if (!isPasswordCorrect) throw new UnauthenticatedError('invalid credentials');
-    res.send('login route');
+    const token = createJWT({ userId: user._id, role: user.role });
+    console.log(token);
+    res.send(token);
 };
