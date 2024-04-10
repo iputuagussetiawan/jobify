@@ -1,5 +1,7 @@
 import 'express-async-errors';
 import express from 'express'
+import { body, validationResult } from 'express-validator';
+
 //routers
 import jobRouter from './routers/jobRouter.js';
 
@@ -20,10 +22,21 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.post('/',(req,res)=>{
-    console.log(req);
-    res.json({ message: 'Data received', data: req.body });
-})
+app.post('/api/v1/test',[body('name').notEmpty().withMessage('name is required')],
+    (req, res, next) => {
+        const errors = validationResult(req);
+        console.log(errors)
+        if (!errors.isEmpty()) {
+            const errorMessages = errors.array().map((error) => error.msg);
+            return res.status(400).json({ errors: errorMessages });
+        }
+        next();
+    },
+        (req, res) => {
+        const { name } = req.body;
+        res.json({ msg: `hello ${name}` });
+        }
+);
 
 app.use('*', (req, res) => {
     res.status(404).json({ msg: 'not found' });
