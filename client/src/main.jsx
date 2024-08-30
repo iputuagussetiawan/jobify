@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import axios from 'axios';
+import customFetch from './utils/customFetch.js';
 
-const data = await axios.get('/api/v1/test');
+
+const data = await customFetch.get('/test');
 console.log(data);
 
 
