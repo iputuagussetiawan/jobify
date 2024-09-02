@@ -1,11 +1,25 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, redirect, useLoaderData } from 'react-router-dom';
+import customFetch from '../utils/customFetch';
 import Wrapper from '../assets/wrappers/Dashboard'
 import { BigSidebar, Navbar, SmallSidebar } from '../components'
 import { useState, createContext, useContext } from 'react';
+
+export const loader = async () => {
+  return 'hellow world';
+  // try {
+  //   const { data } = await customFetch('/users/current-user');
+  //   return data;
+  // } catch (error) {
+  //   return redirect('/');
+  // }
+};
+
 const DashboardContext=createContext();
 
 const DashboardLayout = ({isDarkThemeEnabled}) => {
+  const data =useLoaderData();
+  console.log(data)
   const user = { name: 'agus s' };
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
