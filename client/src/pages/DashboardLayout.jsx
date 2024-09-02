@@ -6,21 +6,18 @@ import { BigSidebar, Navbar, SmallSidebar } from '../components'
 import { useState, createContext, useContext } from 'react';
 
 export const loader = async () => {
-  return 'hellow world';
-  // try {
-  //   const { data } = await customFetch('/users/current-user');
-  //   return data;
-  // } catch (error) {
-  //   return redirect('/');
-  // }
+  try {
+    const { data } = await customFetch('/users/current-user');
+    return data;
+  } catch (error) {
+    return redirect('/');
+  }
 };
 
 const DashboardContext=createContext();
 
 const DashboardLayout = ({isDarkThemeEnabled}) => {
-  const data =useLoaderData();
-  console.log(data)
-  const user = { name: 'agus s' };
+  const { user } = useLoaderData();
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
 
@@ -55,7 +52,7 @@ const DashboardLayout = ({isDarkThemeEnabled}) => {
         <div>
           <Navbar/>
           <div className='dashboard-page'>
-            <Outlet/>
+            <Outlet context={{ user }} />
           </div>
         </div>
       </main>
