@@ -2,7 +2,7 @@ import React from 'react'
 
 const EditJob = () => {
   return (
-    <div>EditJob</div>
+    <h3>EditJob</h3>
   )
 }
 

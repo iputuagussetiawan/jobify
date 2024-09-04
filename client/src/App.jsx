@@ -8,6 +8,7 @@ import {
   DashboardLayout,
   Error,
   AddJob,
+  EditJob,
   Stats,
   AllJobs,
   Profile,
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
           {
             path:'admin',
             element:<Admin/>
+          },
+          {
+            path:'edit-job/:id',
+            element:<EditJob/>
           }
         ]
       }
