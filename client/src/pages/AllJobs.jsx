@@ -16,14 +16,17 @@ export const loader = async ({ request }) => {
   }
 };
 
+const AllJobsContext = createContext();
 const AllJobs = () => {
   const { data } = useLoaderData();
-
+  console.log(data)
   return (
-    <>
+    <AllJobsContext.Provider value={{ data }}>
       <SearchContainer />
       <JobsContainer />
-    </>
+    </AllJobsContext.Provider>
   );
 };
+
+export const useAllJobsContext = () => useContext(AllJobsContext);
 export default AllJobs;
