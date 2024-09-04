@@ -8,7 +8,6 @@ import customFetch from '../utils/customFetch';
 
 
 export const loader = async ({ params }) => {
-  console.log(params)
   try {
     const { data } = await customFetch.get(`/jobs/${params.id}`);
     return data;
@@ -22,8 +21,8 @@ export const action = async () => {
 };
 
 const EditJob = () => {
-  const params=useParams();
-  console.log(params);
+  const {job}=useLoaderData();
+  console.log(job)
   return <h1>EditJob Page</h1>;
 };
 export default EditJob;
