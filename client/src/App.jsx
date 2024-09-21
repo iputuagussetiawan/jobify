@@ -27,6 +27,7 @@ import { loader as dashboardLoader } from './pages/DashboardLayout';
 import { loader as allJobLoader } from './pages/AllJobs';
 import { loader as editJobLoader } from './pages/EditJob';
 import { loader as adminLoaderJobAction } from './pages/Admin';
+import { loader as StatsLoader } from './pages/Stats';
 
 
 
@@ -72,7 +73,8 @@ const router = createBrowserRouter([
           },
           {
             path:'stats',
-            element:<Stats/>
+            element:<Stats/>,
+            loader:StatsLoader,
           },
           {
             path:'all-jobs',
